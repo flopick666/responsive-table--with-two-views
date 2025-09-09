@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Project</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/adaptive.css">
+    <link rel="stylesheet" href="css/accessibility.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <div class="header__left">
+                    <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <button class="btn btn--create">
+                        <span class="btn__icon">+</span>
+                        Create
+                    </button>
+                    <div class="logo">
+                        <span class="logo-text" aria-label="2WIN - Logo">2WIN</span>
+                    </div>
+                </div>
+                
+                <div class="header__mobile-avatar">
+                    <img src="img/avatar.png" alt="User Avatar" class="avatar-img">
+                </div>
+                
+                <nav class="header__nav" role="navigation" aria-label="Main navigation">
+                    <ul class="nav-list">
+                        <li><a href="#" class="nav-link">Home</a></li>
+                        <li><a href="#" class="nav-link">Materials for Quiz</a></li>
+                        <li><a href="#" class="nav-link">Feedback</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="header__right">
+                    <div class="user-avatar">
+                        <img src="img/avatar.png" alt="User Avatar" class="avatar-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="layout">
+                <aside class="sidebar">
+                    <nav class="sidebar__nav">
+                        <ul class="sidebar__menu">
+                            <li class="sidebar__item">
+                                <a href="#" class="sidebar__link">
+                                    <img src="icons/quiz.svg" alt="Quiz icon" class="sidebar__icon">
+                                    <span class="sidebar__text">My quizzes</span>
+                                    <span class="sidebar__text--mobile">My quizzes</span>
+                                </a>
+                            </li>
+                            <li class="sidebar__item">
+                                <a href="#" class="sidebar__link">
+                                    <img src="icons/verified.svg" alt="Verified icon" class="sidebar__icon">
+                                    <span class="sidebar__text">Completed quizzes</span>
+                                    <span class="sidebar__text--mobile">Completed</span>
+                                </a>
+                            </li>
+                            <li class="sidebar__item">
+                                <a href="#" class="sidebar__link active">
+                                    <img src="icons/question.svg" alt="Question icon" class="sidebar__icon">
+                                    <span class="sidebar__text">Unmoderated quizzes</span>
+                                    <span class="sidebar__text--mobile">Unmoderated</span>
+                                </a>
+                            </li>
+                            <li class="sidebar__item">
+                                <a href="#" class="sidebar__link">
+                                    <img src="icons/folder-opened.svg" alt="Folder icon" class="sidebar__icon">
+                                    <span class="sidebar__text">Manage quiz folders</span>
+                                    <span class="sidebar__text--mobile">Manage folders</span>
+                                </a>
+                            </li>
+                            <li class="sidebar__item">
+                                <a href="#" class="sidebar__link" onclick="toggleMobileMenu(event)">
+                                    <img src="icons/trash.svg" alt="Trash icon" class="sidebar__icon desktop-only">
+                                    <span class="sidebar__icon mobile-more mobile-only">•••</span>
+                                    <span class="sidebar__text">Trash</span>
+                                    <span class="sidebar__text--mobile">More</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    
+                    <div class="sidebar__footer">
+                        <div class="user-profile">
+                            <img src="img/avatar.png" alt="User Avatar" class="user-profile__avatar">
+                            <div class="user-profile__info">
+                                <div class="user-profile__name">User Name</div>
+                                <div class="user-profile__role">Moderator</div>
+                            </div>
+                        </div>
+                        
+                        <div class="user-stats">
+                            <div class="user-stat">
+                                <img src="icons/pencil-create.svg" alt="Author rating" class="user-stat__icon">
+                                <span class="user-stat__text">Author rating</span>
+                                <span class="user-stat__value">1190 points</span>
+                            </div>
+                            <div class="user-stat">
+                                <img src="icons/thumbs-up.svg" alt="User rating" class="user-stat__icon">
+                                <span class="user-stat__text">User rating</span>
+                                <span class="user-stat__value">353 points, 31.87%</span>
+                            </div>
+                        </div>
+                        
+                        <button class="sidebar__minimize" onclick="minimizeSidebar()">
+                            <img src="icons/chevron.svg" alt="Minimize" class="sidebar__icon">
+                            <span class="sidebar__text">Minimize</span>
+                        </button>
+                        
+                        <button class="sidebar__maximize" onclick="maximizeSidebar()">
+                            <img src="icons/chevron.svg" alt="Maximize" class="sidebar__icon sidebar__icon--flipped">
+                        </button>
+                        
+                        <button class="sidebar__exit">
+                            <img src="icons/share-arrow.svg" alt="Exit" class="sidebar__icon">
+                            <span class="sidebar__text">Exit</span>
+                        </button>
+                    </div>
+                </aside>
+
+                <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+
+                <div class="mobile-popup" id="mobilePopup">
+                    <div class="mobile-popup__header">
+                        <div class="user-profile">
+                            <img src="img/avatar.png" alt="User Avatar" class="user-profile__avatar">
+                            <div class="user-profile__info">
+                                <div class="user-profile__name">User Name</div>
+                                <div class="user-profile__role">Moderator</div>
+                            </div>
+                        </div>
+                        <button class="mobile-popup__close" onclick="closeMobileMenu()">✕</button>
+                    </div>
+                    <div class="user-stats">
+                        <div class="user-stat">
+                            <img src="icons/pencil-create.svg" alt="Author rating" class="user-stat__icon">
+                            <span class="user-stat__text">Author rating</span>
+                            <span class="user-stat__value">1190 points</span>
+                        </div>
+                        <div class="user-stat">
+                            <img src="icons/thumbs-up.svg" alt="User rating" class="user-stat__icon">
+                            <span class="user-stat__text">User rating</span>
+                            <span class="user-stat__value">353 points, 31.87%</span>
+                        </div>
+                    </div>
+                    <div class="mobile-popup__divider"></div>
+                    <ul class="mobile-popup__menu">
+                        <li class="mobile-popup__item">
+                            <a href="#" class="mobile-popup__link">
+                                <img src="icons/trash.svg" alt="Trash icon" class="mobile-popup__icon">
+                                Trash
+                            </a>
+                        </li>
+                        <li class="mobile-popup__item">
+                            <a href="#" class="mobile-popup__link">
+                                <img src="icons/user.svg" alt="Profile icon" class="mobile-popup__icon">
+                                My profile
+                            </a>
+                        </li>
+                        <div class="mobile-popup__divider"></div>
+                        <li class="mobile-popup__item">
+                            <a href="#" class="mobile-popup__link">
+                                <img src="icons/share-arrow.svg" alt="Exit icon" class="mobile-popup__icon">
+                                Exit
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <section class="content" role="main">
+                    <div class="content__header">
+                        <h1 class="content__title">Unmoderated quizzes</h1>
+                        <div class="filter desktop-only">
+                            <a href="#" class="filter__link">
+                                <img src="icons/grid.svg" alt="Grid icon" class="grid__icon">
+                            </a>
+                            <a href="#" class="filter__link active">
+                                <img src="icons/table.svg" alt="Table icon" class="table__icon">
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="data-container">
+                        <!-- Desktop Header -->
+                        <div class="data-header">
+                            <div class="header-cell"></div>
+                            <div class="header-cell"></div>
+                            <div class="header-cell">
+                                <button class="sort-btn" data-sort="quiz-name" aria-label="Sort by quiz name" aria-sort="none" role="columnheader" tabindex="0">
+                                    <span class="sort-text">Quiz name</span>
+                                    <span class="sort-chevron">
+                                        <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="header-cell">
+                                <button class="sort-btn" data-sort="results" aria-label="Sort by results and rating" aria-sort="none" role="columnheader" tabindex="0">
+                                    <span class="sort-text">Results and rating</span>
+                                    <span class="sort-chevron">
+                                        <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="header-cell">
+                                <button class="sort-btn" data-sort="category" aria-label="Sort by category" aria-sort="none" role="columnheader" tabindex="0">
+                                    <span class="sort-text">Category</span>
+                                    <span class="sort-chevron">
+                                        <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="header-cell">
+                                <button class="sort-btn" data-sort="status" aria-label="Sort by moderation status" aria-sort="none" role="columnheader" tabindex="0">
+                                    <span class="sort-text">Moderation status</span>
+                                    <span class="sort-chevron">
+                                        <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="header-cell">
+                                <button class="sort-btn" data-sort="moderator" aria-label="Sort by last moderation by" aria-sort="none" role="columnheader" tabindex="0">
+                                    <span class="sort-text">Last moderation by</span>
+                                    <span class="sort-chevron">
+                                        <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="header-cell"></div>
+                            <div class="header-cell"></div>
+                        </div>
+
+                        <!-- Data Rows -->
+                        <div class="data-body">
+                            <div class="data-row" role="row">
+                                <!-- Mobile Layout -->
+                                <div class="quiz-thumbnail">
+                                    <img src="img/image.png" alt="Quiz thumbnail">
+                                </div>
+                                <button class="btn quiz-link" aria-label="Copy quiz link"><img src="icons/link.svg" alt="" aria-hidden="true"></button>
+                                <div class="quiz-name">
+                                   
+                                    <div class="quiz-info">
+                                        <h2 class="quiz-title">
+                                            Physics Fundamentals - Understanding Quantum Mechanics Basics
+                                        </h2>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mobile-meta">
+                                    <div class="mobile-date">
+                                        <img src="icons/calendar-dates.svg" alt="Calendar icon"> 15.12.2024</div>
+                                    <div class="quiz-participants"><img src="icons/bar-chart.svg" alt="Bar icon"> 23</div>
+                                    <div class="mobile-rating">
+                                        <div class="stars">
+                                            <span class="star filled"></span><span class="star filled"></span><span class="star filled"></span><span class="star filled"></span><span class="star"></span>
+                                        </div> 
+                                        4.1
+                                    </div>
+                                </div>
+                                <div class="mobile-category" aria-label="Quiz category">Science / Physics / Quantum Mechanics</div>
+                                <div class="mobile-status">
+                                    <div class="status status--moderate">Moderate on 33%</div>
+                                     <div class="moderator-date">Started: 15.12.2024</div>
+                                </div>
+                                <div class="mobile-moderator">
+                                    <div class="moderator">
+                                        <img src="img/avatar.png" alt="Moderator" class="moderator-avatar">
+                                        <div class="moderator-details">
+                                            <div class="moderator-name">Moderator Name</div>
+                                            <div class="moderator-role">Beginner Moderator</div>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                <button class="btn comments-link">
+                                        <img src="icons/comment-text.svg" alt="Comment icon" class="comment-icon">
+                                        <span class="comment-text">Comments & rates</span>
+                                    </button>
+                                <div class="mobile-actions">
+                                    <button class="btn-moderation" aria-describedby="moderation-help">Start moderation</button>
+                                </div>
+                            </div>
+                            <div class="data-row" role="row">
+                                <!-- Mobile Layout -->
+                                <div class="quiz-thumbnail">
+                                    <img src="img/image.png" alt="Quiz thumbnail">
+                                </div>
+                                <button class="btn quiz-link" aria-label="Copy quiz link"><img src="icons/link.svg" alt="" aria-hidden="true"></button>
+                                <div class="quiz-name">
+                                   
+                                    <div class="quiz-info">
+                                        <h2 class="quiz-title">
+                                            JavaScript Mastery - Modern ES6 and Beyond
+                                        </h2>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mobile-meta">
+                                    <div class="mobile-date">
+                                        <img src="icons/calendar-dates.svg" alt="Calendar icon"> 08.03.2024</div>
+                                    <div class="quiz-participants"><img src="icons/bar-chart.svg" alt="Bar icon"> 47</div>
+                                    <div class="mobile-rating">
+                                        <div class="stars">
+                                            <span class="star filled"></span><span class="star filled"></span><span class="star filled"></span><span class="star filled"></span><span class="star"></span>
+                                        </div> 
+                                        3.8
+                                    </div>
+                                </div>
+                                <div class="mobile-category" aria-label="Quiz category">Technology / Programming / JavaScript</div>
+                                <div class="mobile-status">
+                                    <div class="status status--not-moderated">Not moderated</div>
+                                     <div class="moderator-date">&mdash;</div>
+                                </div>
+                                <div class="mobile-moderator">
+                                    <div class="moderator">
+                                        <img src="img/avatar.png" alt="Moderator" class="moderator-avatar">
+                                        <div class="moderator-details">
+                                            <div class="moderator-name">Moderator Name</div>
+                                            <div class="moderator-role">Beginner Moderator</div>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                <button class="btn comments-link inactive">
+                                        <img src="icons/comment-text.svg" alt="Comment icon" class="comment-icon">
+                                        <span class="comment-text">Comments & rates</span>
+                                    </button>
+                                <div class="mobile-actions">
+                                    <button class="btn-moderation" aria-describedby="moderation-help">Start moderation</button>
+                                </div>
+                            </div>
+                            <div class="data-row" role="row">
+                                <!-- Mobile Layout -->
+                                <div class="quiz-thumbnail">
+                                    <img src="img/image.png" alt="Quiz thumbnail">
+                                </div>
+                                <button class="btn quiz-link" aria-label="Copy quiz link"><img src="icons/link.svg" alt="" aria-hidden="true"></button>
+                                <div class="quiz-name">
+                                   
+                                    <div class="quiz-info">
+                                        <h2 class="quiz-title">
+                                            World Literature - Poetry Analysis and Interpretation
+                                        </h2>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mobile-meta">
+                                    <div class="mobile-date">
+                                        <img src="icons/calendar-dates.svg" alt="Calendar icon"> 22.11.2024</div>
+                                    <div class="quiz-participants"><img src="icons/bar-chart.svg" alt="Bar icon"> 8</div>
+                                    <div class="mobile-rating">
+                                        <div class="stars">
+                                            <span class="star filled"></span><span class="star filled"></span><span class="star filled"></span><span class="star filled"></span><span class="star filled"></span>
+                                        </div> 
+                                        4.5
+                                    </div>
+                                </div>
+                                <div class="mobile-category" aria-label="Quiz category">Arts / Literature / World Poetry</div>
+                                <div class="mobile-status">
+                                    <div class="status status--moderate">Moderate on 33%</div>
+                                     <div class="moderator-date">Started: 31.01.2025</div>
+                                </div>
+                                <div class="mobile-moderator">
+                                    <div class="moderator">
+                                        <img src="img/avatar.png" alt="Moderator" class="moderator-avatar">
+                                        <div class="moderator-details">
+                                            <div class="moderator-name">Moderator Name</div>
+                                            <div class="moderator-role">Beginner Moderator</div>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                <button class="btn comments-link">
+                                        <img src="icons/comment-text.svg" alt="Comment icon" class="comment-icon">
+                                        <span class="comment-text">Comments & rates</span>
+                                    </button>
+                                <div class="mobile-actions">
+                                    <button class="btn-moderation" aria-describedby="moderation-help">Start moderation</button>
+                                </div>
+                            </div>
+                            <div class="data-row" role="row">
+                                <!-- Mobile Layout -->
+                                <div class="quiz-thumbnail">
+                                    <img src="img/image.png" alt="Quiz thumbnail">
+                                </div>
+                                <button class="btn quiz-link" aria-label="Copy quiz link"><img src="icons/link.svg" alt="" aria-hidden="true"></button>
+                                <div class="quiz-name">
+                                   
+                                    <div class="quiz-info">
+                                        <h2 class="quiz-title">
+                                            Quiz name. Ready to turn your ambitions into achievements – Moderation 2
+                                        </h2>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mobile-meta">
+                                    <div class="mobile-date">
+                                        <img src="icons/calendar-dates.svg" alt="Calendar icon"> 31.01.2025</div>
+                                    <div class="quiz-participants"><img src="icons/bar-chart.svg" alt="Bar icon"> 0</div>
+                                    <div class="mobile-rating">
+                                        <div class="stars">
+                                            <span class="star filled"></span><span class="star filled"></span><span class="star filled"></span><span class="star"></span><span class="star"></span>
+                                        </div> 
+                                        0
+                                    </div>
+                                </div>
+                                <div class="mobile-category" aria-label="Quiz category">History / Europe History / Ukraine</div>
+                                <div class="mobile-status">
+                                    <div class="status status--not-moderated">Not moderated</div>
+                                     <div class="moderator-date">&mdash;</div>
+                                </div>
+                                <div class="mobile-moderator">
+                                    <div class="moderator">
+                                        <img src="img/avatar.png" alt="Moderator" class="moderator-avatar">
+                                        <div class="moderator-details">
+                                            <div class="moderator-name">Moderator Name</div>
+                                            <div class="moderator-role">Beginner Moderator</div>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                <button class="btn comments-link inactive">
+                                        <img src="icons/comment-text.svg" alt="Comment icon" class="comment-icon">
+                                        <span class="comment-text">Comments & rates</span>
+                                    </button>
+                                <div class="mobile-actions">
+                                    <button class="btn-moderation" aria-describedby="moderation-help">Start moderation</button>
+                                </div>
+                            </div>
+                            <div class="data-row" role="row">
+                                <!-- Mobile Layout -->
+                                <div class="quiz-thumbnail">
+                                    <img src="img/image.png" alt="Quiz thumbnail">
+                                </div>
+                                <button class="btn quiz-link" aria-label="Copy quiz link"><img src="icons/link.svg" alt="" aria-hidden="true"></button>
+                                <div class="quiz-name">
+                                   
+                                    <div class="quiz-info">
+                                        <h2 class="quiz-title">
+                                            Quiz name. Ready to turn your ambitions into achievements – Moderation 2
+                                        </h2>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mobile-meta">
+                                    <div class="mobile-date">
+                                        <img src="icons/calendar-dates.svg" alt="Calendar icon"> 31.01.2025</div>
+                                    <div class="quiz-participants"><img src="icons/bar-chart.svg" alt="Bar icon"> 0</div>
+                                    <div class="mobile-rating">
+                                        <div class="stars">
+                                            <span class="star filled"></span><span class="star filled"></span><span class="star filled"></span><span class="star filled"></span><span class="star filled"></span>
+                                        </div> 
+                                        0
+                                    </div>
+                                </div>
+                                <div class="mobile-category" aria-label="Quiz category">History / Europe History / Ukraine</div>
+                                <div class="mobile-status">
+                                    <div class="status status--not-moderated">Not moderated</div>
+                                     <div class="moderator-date">&mdash;</div>
+                                </div>
+                                <div class="mobile-moderator">
+                                    <div class="moderator">
+                                        <img src="img/avatar.png" alt="Moderator" class="moderator-avatar">
+                                        <div class="moderator-details">
+                                            <div class="moderator-name">Moderator Name</div>
+                                            <div class="moderator-role">Beginner Moderator</div>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                <button class="btn comments-link inactive">
+                                        <img src="icons/comment-text.svg" alt="Comment icon" class="comment-icon">
+                                        <span class="comment-text">Comments & rates</span>
+                                    </button>
+                                <div class="mobile-actions">
+                                    <button class="btn-moderation" aria-describedby="moderation-help">Start moderation</button>
+                                </div>
+                            </div>
+                            <div class="data-row" role="row">
+                                <!-- Mobile Layout -->
+                                <div class="quiz-thumbnail">
+                                    <img src="img/image.png" alt="Quiz thumbnail">
+                                </div>
+                                <button class="btn quiz-link" aria-label="Copy quiz link"><img src="icons/link.svg" alt="" aria-hidden="true"></button>
+                                <div class="quiz-name">
+                                   
+                                    <div class="quiz-info">
+                                        <h2 class="quiz-title">
+                                            Quiz name. Ready to turn your ambitions into achievements – Moderation 2
+                                        </h2>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="mobile-meta">
+                                    <div class="mobile-date">
+                                        <img src="icons/calendar-dates.svg" alt="Calendar icon"> 31.01.2025</div>
+                                    <div class="quiz-participants"><img src="icons/bar-chart.svg" alt="Bar icon"> 0</div>
+                                    <div class="mobile-rating">
+                                        <div class="stars">
+                                            <span class="star filled"></span><span class="star filled"></span><span class="star filled"></span><span class="star"></span><span class="star"></span>
+                                        </div> 
+                                        0
+                                    </div>
+                                </div>
+                                <div class="mobile-category" aria-label="Quiz category">History / Europe History / Ukraine</div>
+                                <div class="mobile-status">
+                                    <div class="status status--not-moderated">Not moderated</div>
+                                     <div class="moderator-date">&mdash;</div>
+                                </div>
+                                <div class="mobile-moderator">
+                                    <div class="moderator">
+                                        <img src="img/avatar.png" alt="Moderator" class="moderator-avatar">
+                                        <div class="moderator-details">
+                                            <div class="moderator-name">Moderator Name</div>
+                                            <div class="moderator-role">Beginner Moderator</div>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                <button class="btn comments-link inactive">
+                                        <img src="icons/comment-text.svg" alt="Comment icon" class="comment-icon">
+                                        <span class="comment-text">Comments & rates</span>
+                                    </button>
+                                <div class="mobile-actions">
+                                    <button class="btn-moderation" aria-describedby="moderation-help">Start moderation</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Table Footer -->
+                        <div class="table-footer">
+                            <div class="items-per-page">
+                                <label for="items-select" class="items-label">Items per page</label>
+                                <select id="items-select" class="items-select" aria-describedby="pagination-help">
+                                    <option value="2">2</option>
+                                    <option value="5" selected>5</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+                            
+                            <div class="pagination">
+                                <button class="pagination-btn pagination-btn--first pagination-btn--inactive" aria-label="First page">
+                                    <img src="icons/double_arrow.svg" alt="Double arrow left" class="pagination-icon pagination-icon--double-left">
+                                </button>
+                                <button class="pagination-btn pagination-btn--prev pagination-btn--inactive" aria-label="Previous page">
+                                    <img src="icons/arrow.svg" alt="Arrow left" class="pagination-icon pagination-icon--left">
+                                </button>
+                                
+                                <div class="pagination-numbers">
+                                    <span class="pagination-number pagination-number--current">1</span>
+                                    <span class="pagination-number">2</span>
+                                    <span class="pagination-number">3</span>
+                                    <span class="pagination-dots">...</span>
+                                    <span class="pagination-number">25</span>
+                                </div>
+                                
+                                <button class="pagination-btn pagination-btn--next" aria-label="Next page">
+                                    <img src="icons/arrow.svg" alt="Arrow right" class="pagination-icon pagination-icon--right">
+                                </button>
+                                <button class="pagination-btn pagination-btn--last" aria-label="Last page">
+                                    <img src="icons/double_arrow.svg" alt="Double arrow right" class="pagination-icon pagination-icon--double-right">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Hidden announcements for screen readers -->
+    <div id="announcements" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+    <div id="moderation-help" class="sr-only">Press Enter or Space to start quiz moderation</div>
+    <div id="pagination-help" class="sr-only">Select number of items to display per page</div>
+    
+    <script src="js/main.js"></script>
+    <script src="js/table-sync.js"></script>
+</body>
+</html>
